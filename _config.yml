@@ -11,5 +11,5 @@ res_enhanced: "~7.5-meter"
 
 cost_enhanced: "$0.7"
 
-img_src_o: "/static/img/o"
-img_src_v: "/static/img/v"
+img_src_o: "/demo-sat-sr/static/img/o"
+img_src_v: "/demo-sat-sr/static/img/v"
