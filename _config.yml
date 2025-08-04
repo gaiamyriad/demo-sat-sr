@@ -1,5 +1,8 @@
 title: AI-Enhanced Satellite Imagery Data
 
+url: 'https://gaiamyriad.github.io'
+baseurl: '/demo-sat-sr'
+
 markdown: kramdown
 permalink: pretty
 
