@@ -1,0 +1,12 @@
+title: AI-Enhanced Satellite Imagery Data
+
+markdown: kramdown
+permalink: pretty
+
+res_original: "15-meter"
+res_enhanced: "~7.5-meter"
+
+cost_enhanced: "$0.7"
+
+img_src_o: "/static/img/o"
+img_src_v: "/static/img/v"

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<title>{{ site.title }}</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  /* Tailwind inspired */
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-500: #71717a;
+  --color-zinc-600: #52525b;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-800: #18181b;
+  --color-zinc-900: #18181b;
+
+  --color-link: #3b82f6;
+  --color-active: #1d4ed8;
+
+  --font-family-sans-serif: system-ui, -apple-system, 'Segoe UI', 'Roboto', Ubuntu, Cantarell, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-family-serif: 'Iowan Old Style', 'Apple Garamond', Baskerville, 'Times New Roman', 'Droid Serif', Times, 'Source Serif Pro', serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  --border-radius: 13px;
+}
+
+html {
+  background: var(--color-zinc-100);
+}
+
+body {
+  margin: 0 auto;
+  width: 100%;
+  font-family: var(--font-family-sans-serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-zinc-700);
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  padding: 0.1rem 0;
+  border-bottom: 1px solid var(--color-link);
+}
+
+a:hover, a:active {
+  color: var(--color-active);
+}
+
+header {
+  margin: 1rem 0;
+  text-align: center;
+  font-weight: 400;
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.samples {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2rem;
+  color: var(--color-zinc-600);
+}
+
+.samples .active {
+  text-decoration: none;
+  color: var(--color-zinc-500);
+}
+
+.title-label {
+  margin: 0;
+  padding: 0.25rem 1rem;
+  background: var(--color-zinc-200);
+  border-top: 1px solid var(--color-zinc-300);
+  border-bottom: 1px solid var(--color-zinc-500);
+}
+
+.title-label__before,
+.title-label__after {
+  color: var(--color-zinc-600);
+}
+.title-label__after {
+  float: right;
+}
+
+/*https://github.com/kylewetton/image-compare-viewer*/
+</style>
+
+</head>
+
+<body>
+
+  <header>
+    <h1 class="title">{{ site.title }}</h1>
+    <p class="samples">
+      Deventer ›
+      <a href="/">City</a>
+      |
+      <a href="/area-deventer-mix">Mix</a>
+      
+      • Leeuwarden ›
+      <a href="/area-leeuwarden-agri">Agri</a>
+      |
+      <a href="/area-leeuwarden-city">City</a>
+      |
+      <a href="/area-leeuwarden-mix-1">Mix-1</a>
+      |
+      <a href="/area-leeuwarden-mix-2">Mix-2</a>
+      
+      • Nijmegen ›
+      <a href="/area-nijmegen-agri-1">Agri-1</a>
+      |
+      <a href="/area-nijmegen-agri-2">Agri-2</a>
+      |
+      <a href="/area-nijmegen-mix-1">Mix-1</a>
+      |
+      <a href="/area-nijmegen-mix-2">Mix-2</a>
+    </p>
+  </header>
+
+  <div class="title-label">
+    <span class="title-label__before">Original ({{ site.res_original }})</span>
+    <span class="title-label__after">Enhanced ({{ site.res_enhanced }})</span>
+  </div>
+
+  <main>
+    <image-compare label-text="AI Enhanced Satellite Data">
+      {{ content }}
+    </image-compare>
+  </main>
+
+<script type="text/javascript">
+  const template=document.createElement("template"),thumbStyles="\n  background-color: var(--thumb-background-color);\n  background-image: var(--thumb-background-image);\n  background-size: 90%;\n  background-position: center center;\n  background-repeat: no-repeat;\n  border-radius: var(--thumb-radius);\n  border: var(--thumb-border-size) var(--thumb-border-color) solid;\n  color: var(--thumb-border-color);\n  width: var(--thumb-size);\n  height: var(--thumb-size);\n",thumbFocusStyles="\n  box-shadow: 0px 0px 0px var(--focus-width) var(--focus-color);\n",thumbSvgWidth=4;template.innerHTML=`\n  <style>\n    :host {\n      --exposure: 50%;\n\n      --thumb-background-color: hsla(0, 0%, 100%, 0.9);\n      --thumb-background-image: url('data:image/svg+xml;utf8,<svg viewbox="0 0 60 60"  width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M20 20 L10 30 L20 40"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M40 20 L50 30 L40 40"/></svg>');\n      --thumb-size: clamp(3em, 10vmin, 5em);\n      --thumb-radius: 50%;\n      --thumb-border-color: hsla(0, 0%, 0%, 0.9);\n      --thumb-border-size: 2px;\n\n      --focus-width: var(--thumb-border-size);\n      --focus-color: hsl(200, 100%, 80%);\n\n      --divider-width: 2px;\n      --divider-color: hsla(0, 0%, 0%, 0.9);\n\n      display: flex;\n      flex-direction: column;\n      margin: 0;\n      overflow: hidden;\n      position: relative;\n    }\n\n    ::slotted(img) {\n      height: auto;\n      width: 100%;\n    }\n\n    ::slotted([slot='image-2']) {\n      clip-path: polygon(\n        calc(var(--exposure) + var(--divider-width)/2) 0, \n        100% 0, \n        100% 100%, \n        calc(var(--exposure) + var(--divider-width)/2) 100%);\n    }\n\n    slot {\n      display: flex;\n      flex-direction: column;\n      width: 100%;\n    }\n\n    slot[name='image-2'] {\n      position: absolute;\n      top:0;\n      filter: drop-shadow(calc(var(--divider-width) * -1) 0 0 var(--divider-color));\n    }\n\n    .visually-hidden {\n      border: 0; \n      clip: rect(0 0 0 0); \n      clip-path: polygon(0px 0px, 0px 0px, 0px 0px);\n      -webkit-clip-path: polygon(0px 0px, 0px 0px, 0px 0px);\n      height: 1px; \n      margin: -1px;\n      overflow: hidden;\n      padding: 0;\n      position: absolute;\n      width: 1px;\n      white-space: nowrap;\n    }\n\n    label {\n      align-items: stretch;\n      display: flex;\n      position: absolute;\n      top: 0;\n      left: 0;\n      bottom: 0;\n      right: 0;\n    }\n\n    input {\n      cursor: col-resize;\n      margin: 0 calc(var(--thumb-size) / -2);\n      width: calc(100% + var(--thumb-size));\n      appearance: none;\n      -webkit-appearance: none;\n      background: none;\n      border: none;\n    }\n\n    ::-moz-range-thumb {\n      ${thumbStyles}\n    }\n\n    ::-webkit-slider-thumb {\n      -webkit-appearance: none;\n      ${thumbStyles}\n    }\n\n    input:focus::-moz-range-thumb {\n      ${thumbFocusStyles}\n    }\n\n    input:focus::-webkit-slider-thumb {\n      ${thumbFocusStyles}\n    }\n  </style>\n\n  <slot name="image-1"></slot>\n  <slot name="image-2"></slot>\n  \n  <label>\n    <span class="visually-hidden js-label-text">\n      Control how much of each overlapping image is shown. \n      0 means the first image is completely hidden and the second image is fully visible.\n      100 means the first image is fully visible and the second image is completely hidden.\n      50 means both images are half-shown, half-hidden.\n    </span>\n    <input type="range" value="50" min="0" max="100"/>\n  </label>\n`;class ImageCompare extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"})}connectedCallback(){this.shadowRoot.appendChild(template.content.cloneNode(!0)),["input","change"].forEach((n=>{this.shadowRoot.querySelector("input").addEventListener(n,(({target:n})=>{this.animationFrame&&cancelAnimationFrame(this.animationFrame),this.animationFrame=requestAnimationFrame((()=>{this.shadowRoot.host.style.setProperty("--exposure",`${n.value}%`)}))}))}));const n=this.shadowRoot.host.getAttribute("label-text");n&&(this.shadowRoot.querySelector(".js-label-text").textContent=n)}}customElements.define("image-compare",ImageCompare);
+</script>
+</body>
+</html>
